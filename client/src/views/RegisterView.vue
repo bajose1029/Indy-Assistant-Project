@@ -1,5 +1,6 @@
 <template>
-  <div id="register">
+<div id="register">
+  <div class="login-container" id="login-container">
     <form v-on:submit.prevent="register">
       <h1>Create Account</h1>
       <div id="fields">
@@ -78,6 +79,7 @@
       <router-link v-bind:to="{ name: 'login' }">Sign in!</router-link>
     </form>
   </div>
+</div>
 </template>
 
 <script>

@@ -3,53 +3,55 @@
     <section id="main-icon">
       <page-icons id="icons-for-page" />
     </section>
-    <section id="main-section">
-      <select-list-admin id="all-artist-manager"/>
-      <user-list id="list-of-artist-manager"/>
-      <profile-page id="chosen-person-profile"/>
+    <section id="manager-main-section">
+        <select-list-manager id="choose-artist"/>
+        <artist-list id="managers-list-of-artists" />
+        <manager-page id="manager-profile" />
     </section>
-  </div>
+</div>
 </template>
 
 <script>
+import ArtistList from '../components/ArtistList.vue';
 import PageIcons from '../components/PageIcons.vue';
-import SelectListAdmin from '../components/SelectListAdmin.vue';
-import UserList from '../components/UserList.vue';
-import ProfilePage from '../components/ProfilePage.vue';
+import SelectListManager from '../components/SelectListManager.vue'
+import ManagerPage from '../components/ManagerPage.vue';
 import { resourceService } from '../services/ResourceService';
 
 export default {
-  data() {
+    data() {
     return {
       isLoading: false
     }
   },
-
-  components : {
+  components: {
     PageIcons,
-    SelectListAdmin,
-    UserList,
-    ProfilePage
+    SelectListManager,
+    ArtistList,
+    ManagerPage
   },
   created() {
     // this.isLoading = true;
-
-    resourceService.getArtists().then((response) => {
-      this.$store.commit('SET_ARTISTS', response.data);
+    let managerId;
+    
+    resourceService.getManagerFromUserId(this.$store.state.user.id).then((response) => {
+      let manager = response.data;
+      managerId = manager.managerId;
     })
 
 
-    resourceService.getManagers().then((response) => {
-      this.$store.commit('SET_MANAGERS', response.data);
+    resourceService.getManagerFromManagerId(managerId).then((response) => {
+      this.$store.commit('SET_MANAGER_PROFILE', response.data);
     })
 
-
-
+    resourceService.getArtistsFromManagerId(managerId).then((response) => {
+      this.$store.commit('SET_MY_ARTISTS', response.data);
+    })
     
     
-    // this.$store.commit('SET_ALL', );
     // this.isLoading = false;
   }
+
 }
 </script>
 
@@ -66,7 +68,7 @@ export default {
   grid-area: icons;
 }
 
-#main-section {
+#manager-main-section {
   grid-area: info;
   background-color: #2e2e2e;
   display : grid;
@@ -77,20 +79,20 @@ export default {
   overflow-y: auto;
 }
 
-#all-artist-manager {
+#choose-artist {
     grid-area: select;
 }
 
-#list-of-artist-manager {
+#managers-list-of-artists {
     grid-area: list;
 }
 
-#chosen-person-profile {
+#manager-profile {
     grid-area: profile;
 }
 
 @media only screen and (max-width: 450px) {
-    #main-section {
+    #manager-main-section {
         grid-template-rows: 1fr 9fr 9fr;
         grid-template-columns: none;
         grid-template-areas: 
