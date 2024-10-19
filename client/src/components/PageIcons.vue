@@ -19,8 +19,8 @@
 export default {
   data() {
     return {
-      search : {name: ''},
-      iconChosen : "artist"
+      search : { name: ''},
+      iconChosen : this.$store.state.iconChosen
     }
   },
 
@@ -29,7 +29,15 @@ export default {
       this.iconChosen = selected;
       this.$store.commit('SET_CHOSEN_ICON', this.iconChosen);
       if(this.iconChosen === "artist") {
-        this.$router.push({name: 'home'});
+        if(this.$store.state.user.type === 'Admin') {
+          this.$router.push({name: 'home'});
+        }
+        else if (this.$store.state.user.type === 'Manager'){
+          this.$router.push({name: 'manager'});
+        }
+        else {
+          this.$router.push({name: 'artist'});
+        }
       }
       else if(this.iconChosen === "calender") {
         this.$router.push({name: 'calender'});

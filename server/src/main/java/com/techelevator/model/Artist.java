@@ -1,9 +1,13 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Artist {
     private int artistId;
+    @JsonProperty("artistName")
     private String name;
     private int managerId = 0;
     private String emailAddress;
@@ -25,20 +29,20 @@ public class Artist {
     public Artist() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getArtistId() {
         return artistId;
     }
 
     public void setArtistId(int artistId) {
         this.artistId = artistId;
-    }
-
-    public String getArtistName() {
-        return name;
-    }
-
-    public void setArtistName(String artistName) {
-        this.name = artistName;
     }
 
     public int getManagerId() {

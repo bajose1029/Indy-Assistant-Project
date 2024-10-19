@@ -66,13 +66,13 @@ public class ProjectController {
         return projects;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/{projectId}")
     public Project getProjectByProjectId(@PathVariable int projectId){
         return projectDao.getProjectById(projectId);
     }
 
-    @GetMapping("artists/{id}")
+    @GetMapping("/artists/{artistId}")
     public List<Project> getArtistsProjects(@PathVariable int artistId) {
         return projectDao.getAllArtistsProjects(artistId);
     }

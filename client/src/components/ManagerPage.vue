@@ -4,9 +4,9 @@
   <ul>
     <li> {{ managerProfile.name }} (Manager) </li>
     <li> Email:
-          <router-link v-bind:to="{ name: 'home' }"> 
+        <div class="hyperlink"> 
               {{ managerProfile.emailAddress }}
-          </router-link>
+        </div>
     </li>
     <li> Manager Id: {{ managerProfile.managerId }} </li>
   </ul>
@@ -57,10 +57,13 @@ export default {
     
 }
 
-
 #manager-profile > img {
     width: 86%;
     margin: 10px 10px 10px;
     
+}
+
+.hyperlink:hover {
+    color: #8a737d;
 }
 </style>

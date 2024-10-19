@@ -1,8 +1,8 @@
 <template>
-  <section id="#managers-list-of-artists">
+  <section id="managers-list-of-artists">
     <ul>
-        <li v-for="managersArtist in managersArtists" v-bind:key="managersArtist.artistId" @click="selectedArtist(managersArtist.artistId)">
-            {{ managersArtist.name }}
+        <li v-for="managersArtist in managersArtists" v-bind:key="managersArtist.artistId" @click="goToArtist(managersArtist.artistId)">
+            {{ managersArtist.artistName }}
             <img v-bind:src="managersArtist.imageUrl" alt="prof pic" />
         </li>
     </ul>
@@ -17,11 +17,12 @@ export default {
                 return this.$store.state.myArtists
         }
     },
-    // methods: {
-    //     selectedArtist(artistId) {
-    //         this.$store.commit('')
-    //     }
-    // }
+    methods: {
+        goToArtist(artistId) {
+            this.$store.commit("SET_CLICKED_ARTIST_ID", artistId);
+            this.$router.push({ name: 'artist' });
+        }
+    }
 }
 </script>
 

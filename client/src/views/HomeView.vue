@@ -34,6 +34,16 @@ export default {
   created() {
     // this.isLoading = true;
 
+    // Promise.all([resourceService.getArtists(), resourceService.getManagers(), resourceService.getUsers()]).then(([artistResponse, managerResponse, userResponse]) => {
+    //   this.$store.commit('SET_ARTISTS', artistResponse.data);
+    //   this.$store.commit('SET_MANAGERS', managerResponse.data);
+    //   this.$store.commit('SET_USERS', userResponse.data);
+    // }).error((error) => {
+    //   console.log(error);
+    // }).finally(()=> {
+    //   this.isLoading = false;
+    // })
+
     resourceService.getArtists().then((response) => {
       this.$store.commit('SET_ARTISTS', response.data);
     })
@@ -43,6 +53,9 @@ export default {
       this.$store.commit('SET_MANAGERS', response.data);
     })
 
+    resourceService.getUsers().then((response) => {
+      this.$store.commit('SET_USERS', response.data);
+    })
 
 
     

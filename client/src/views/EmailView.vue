@@ -1,12 +1,20 @@
 <template>
-  <div>Email</div>
+  <div id="main-div">
+    <section id="main-icon">
+      <page-icons id="icons-for-page" />
+    </section>
+  </div>
 </template>
 
 <script>
-export default {
+import PageIcons from '../components/PageIcons.vue';
 
+export default {
+  components : {
+    PageIcons
+  }
 }
-</script>
+</script >
 
 <style>
 

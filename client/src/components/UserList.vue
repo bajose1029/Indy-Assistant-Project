@@ -1,8 +1,13 @@
 <template>
-  <section id="list-of-artist-manager">
+  <section id="list-of-artist-manager" >
     <ul>
         <li v-bind:class="{ clicked : choose === artistManager.userId}" v-for="artistManager in artistManagers" v-bind:key="artistManager.userId" @click="selected(artistManager.userId)">
-            {{ artistManager.name }}
+            <div v-if="artistManager.artistId">
+                {{ artistManager.artistName }}
+            </div>
+            <div v-else>
+                {{ artistManager.name }}
+            </div>
             <img v-bind:src="artistManager.imageUrl" alt="profile pic" />
         </li>
     </ul>
@@ -27,7 +32,7 @@ export default {
             }
             else {
                 return this.$store.state.artists.concat(this.$store.state.managers).sort((a,b) => {
-                    return a.name.localeCompare(b.name);
+                    return a.userId - b.userId;
                     }); 
             }
         }

@@ -50,7 +50,17 @@ public class ArtistController {
         return artistDao.getArtistByUserId(userId);
     }
     @GetMapping("/{id}")
-    public List<Artist> getArtistById(@PathVariable int id, Principal principal) {
+    public Artist getArtistById(@PathVariable int id, Principal principal) {
+        User user = userDao.getUserByUsername(principal.getName());
+        if(!user.isEnabled())
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account has been deactivated. Please reach out to " +
+                    "Admin to reactivate.");
+        }
+        return artistDao.getArtistById(id);
+    }
+    @GetMapping("/manager/{managerId}")
+    public List<Artist> getArtistByManagerId(@PathVariable int managerId, Principal principal) {
         List<Artist> artist = new ArrayList<>();
         User user = userDao.getUserByUsername(principal.getName());
         if(!user.isEnabled())
@@ -58,21 +68,10 @@ public class ArtistController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account has been deactivated. Please reach out to " +
                     "Admin to reactivate.");
         }
-
-        if(user.getType().equalsIgnoreCase("Artist") || user.getType().equalsIgnoreCase("Admin"))
-        {
-            Artist idArtist = artistDao.getArtistById(id);
-            artist.add(idArtist);
-        }
-        else if(user.getType().equalsIgnoreCase("Manager")) {
-            artist = artistDao.getArtistsByManagerId(id);
-        }
-
-        return artist;
-
+        return artistDao.getArtistsByManagerId(managerId);
     }
-
     @PostMapping
+    @PreAuthorize("permitAll()")
     public Artist addArtist(@RequestBody Artist artist) {
         return artistDao.createArtist(artist);
     }

@@ -207,6 +207,17 @@
 import axios from 'axios'
 
 const resourceService = {
+  updateProject(project, projectId){
+    return axios.put(`/projects/${projectId}`, project);
+  },
+
+  deleteProject(projectId){
+    return axios.delete(`/projects/${projectId}`);
+  },
+  addArtistsProject(project) {
+    return axios.post('/projects', project)
+  },
+
   getArtists() {
     return axios.get('/artists');
   },
@@ -261,11 +272,11 @@ const resourceService = {
     //   return theArtist.managerId === manager.managerId;
     // })
     // return theManager;
-    return axios.get(`/managers/${artistId}`);
+    return axios.get(`/managers/artist/${artistId}`);
   },
 
   getArtistsFromManagerId(managerId) {
-      return axios.get(`artists/${managerId}`);
+      return axios.get(`artists/manager/${managerId}`);
   },
 
   getManagerFromManagerId(managerId) {
@@ -284,6 +295,14 @@ const resourceService = {
 
   getArtistFromUserId(userId) {
     return axios.get(`/artists/user/${userId}`)
+  },
+
+  getArtistFromArtistId(artistId){
+    return axios.get(`/artists/${artistId}`);
+  },
+
+  getProjectFromProjectId(projectId) {
+    return axios.get(`/projects/${projectId}`);
   },
 
   getBothArtistAndManagers() {

@@ -32,21 +32,35 @@ export default {
   },
   created() {
     // this.isLoading = true;
-    let managerId;
+    if(this.$store.state.user.type === "Admin" || this.$store.state.user.type === "Artist" ){
+
+      resourceService.getManagerFromManagerId(this.$store.state.clickedManagerId).then((response) => {
+          this.$store.commit('SET_MANAGER_PROFILE', response.data);
+        })
+
+        resourceService.getArtistsFromManagerId(this.$store.state.clickedManagerId).then((response) => {
+          this.$store.commit('SET_MY_ARTISTS', response.data);
+        })
+       
+    }
+    else{
+      resourceService.getManagerFromUserId(this.$store.state.user.id).then((response) => {
+        let manager = response.data;
+        let managerId = manager.managerId;
+
+        resourceService.getManagerFromManagerId(managerId).then((response) => {
+          this.$store.commit('SET_MANAGER_PROFILE', response.data);
+        })
+
+        resourceService.getArtistsFromManagerId(managerId).then((response) => {
+          this.$store.commit('SET_MY_ARTISTS', response.data);
+        })
+        
+      })
+    }
+
+
     
-    resourceService.getManagerFromUserId(this.$store.state.user.id).then((response) => {
-      let manager = response.data;
-      managerId = manager.managerId;
-    })
-
-
-    resourceService.getManagerFromManagerId(managerId).then((response) => {
-      this.$store.commit('SET_MANAGER_PROFILE', response.data);
-    })
-
-    resourceService.getArtistsFromManagerId(managerId).then((response) => {
-      this.$store.commit('SET_MY_ARTISTS', response.data);
-    })
     
     
     // this.isLoading = false;

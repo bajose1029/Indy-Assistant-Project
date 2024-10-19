@@ -173,14 +173,15 @@ public class JdbcArtistDao implements ArtistDao{
 
     @Override
     public Artist createArtist(Artist artist) {
-        int artistId;
 
+        Artist newArtist = null;
         String sql = "INSERT INTO artist(artist_name, manager_id, artist_email_address, user_id, image_url, pro) "
-                + "VALUES(? ? ? ? ? ?) RETURNING artist_id;";
+                + "VALUES(?, ?, ?, ?, ?, ?) RETURNING artist_id;";
 
         try {
-            artistId = template.queryForObject(sql, int.class, artist.getArtistName(), artist.getManagerId(),
+            int artistId = template.queryForObject(sql, int.class, artist.getName(), artist.getManagerId(),
                     artist.getEmailAddress(), artist.getUserId(), artist.getImageUrl(), artist.getPro());
+            newArtist = getArtistById(artistId);
         }
         catch (CannotGetJdbcConnectionException e)
         {
@@ -191,7 +192,7 @@ public class JdbcArtistDao implements ArtistDao{
             throw new DaoException("Data integrity violation", e);
         }
 
-        return getArtistById(artistId);
+        return newArtist;
     }
 
     @Override
@@ -202,7 +203,7 @@ public class JdbcArtistDao implements ArtistDao{
                 "WHERE artist_id = ?;";
 
         try{
-            int rowsAffected = template.update(sql, artist.getArtistName(), artist.getManagerId(),
+            int rowsAffected = template.update(sql, artist.getName(), artist.getManagerId(),
                     artist.getEmailAddress(), artist.getUserId(), artist.getImageUrl(), artist.getPro(),
                     artist.getArtistId());
 

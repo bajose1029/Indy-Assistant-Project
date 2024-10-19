@@ -14,7 +14,7 @@ export default {
     PageIcons
   }
 }
-</script >
+</script>
 
 <style>
 

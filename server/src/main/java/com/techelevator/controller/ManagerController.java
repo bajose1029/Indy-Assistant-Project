@@ -41,25 +41,28 @@ public class ManagerController {
 
     @GetMapping("/{id}")
     public Manager getManagerById(@PathVariable int id, Principal principal) {
-        Manager manager = null;
         User user = userDao.getUserByUsername(principal.getName());
 
-        if(!user.isEnabled())
-        {
+        if(!user.isEnabled()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account has been deactivated. Please reach out to " +
                     "Admin to reactivate.");
         }
 
-        if(user.getType().equalsIgnoreCase("Artist")){
-            manager = managerDao.getManagerByArtistId(id);
-        }
-        else if (user.getType().equalsIgnoreCase("Manager")) {
-            manager = managerDao.getManagerById(id);
-        }
-
-        return manager;
+        return managerDao.getManagerById(id);
     }
 
+    @GetMapping("/artist/{artistId}")
+    public Manager getManagerByArtistId(@PathVariable int artistId, Principal principal) {
+        User user = userDao.getUserByUsername(principal.getName());
+
+        if (!user.isEnabled()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account has been deactivated. Please reach out to " +
+                    "Admin to reactivate.");
+        }
+
+        return managerDao.getManagerByArtistId(artistId);
+
+    }
     @GetMapping("/user/{userId}")
     public Manager getManagerByUserId(@PathVariable int userId, Principal principal) {
         User user = userDao.getUserByUsername(principal.getName());
@@ -73,6 +76,7 @@ public class ManagerController {
         return managerDao.getManagerByUserId(userId);
     }
     @PostMapping
+    @PreAuthorize("permitAll()")
     public Manager addManager(@RequestBody Manager manager) {
         return managerDao.createManager(manager);
     }

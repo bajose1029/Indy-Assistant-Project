@@ -1,7 +1,13 @@
 <template>
   <div id="artist-app">
     <header>
-      <a id="link-back" href="index.html">
+      <a id="link-back" href="/" v-if="this.$store.state.user.type === 'Admin'">
+        <img src="./assets/apple-touch-icon.png" alt="Indy Assistant logo" id="logo" />
+      </a>
+      <a id="link-back" href="/manager" v-else-if="this.$store.state.user.type === 'Manager'">
+        <img src="./assets/apple-touch-icon.png" alt="Indy Assistant logo" id="logo" />
+      </a>
+      <a id="link-back" href="/artist" v-else>
         <img src="./assets/apple-touch-icon.png" alt="Indy Assistant logo" id="logo" />
       </a>
       <h1>Indie <br /> Assistant
@@ -9,11 +15,18 @@
       <!-- v-if="this.$store.state.token" -->
       <nav v-if="this.$store.state.token">
         <section>
-          <router-link v-bind:to="{ name: 'home' }">
+          <router-link v-bind:to="{ name: 'home' }" v-if="this.$store.state.user.type === 'Admin'">
+            Home
+          </router-link>
+          <router-link v-bind:to="{ name: 'manager' }" v-else-if="this.$store.state.user.type === 'Manager'">
+            Home
+          </router-link>
+          <router-link v-bind:to="{ name: 'artist' }" v-else>
             Home
           </router-link>
 
-          <router-link v-bind:to="{ name: 'home' }">
+
+          <router-link v-bind:to="{ name: 'about' }">
             About
           </router-link>
 

@@ -10,8 +10,8 @@ import CalenderView from '../views/CalenderView.vue'
 import EmailView from '../views/EmailView.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ArtistView from '../views/ArtistView.vue'
-
-
+import AboutView from '../views/AboutView.vue'
+import ProjectView from '../views/ProjectView.vue'
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -31,7 +31,7 @@ const routes = [
       }
     },
     {
-      path: '/manager/',
+      path: '/manager',
       name: 'manager',
       component: ManagerView,
       meta: {
@@ -39,13 +39,31 @@ const routes = [
       }
     },
     {
-      path: '/artist/',
+      path: '/about',
+      name: 'about',
+      component: AboutView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/artist',
       name: 'artist',
       component: ArtistView,
       meta: {
         requiresAuth: true,
       }
     },
+
+    {
+      path: '/project',
+      name: 'project',
+      component: ProjectView,
+      meta: {
+        requiresAuth: true,
+      }
+    },
+
     {
       path: "/login",
       name: "login",
