@@ -1,8 +1,8 @@
 <template>
   <div id="main-div">
-    <section id="main-icon">
+    <!-- <section id="main-icon">
       <page-icons id="icons-for-page" />
-    </section>
+    </section> -->
     <div id="about-page">
       <section id="about-container">
         <h1>About</h1>
@@ -26,7 +26,7 @@ import PageIcons from '../components/PageIcons.vue';
 
 export default {
   components : {
-    PageIcons
+    // PageIcons
   }
 }
 </script>

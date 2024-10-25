@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div></div>
 </template>
 
@@ -10,13 +10,13 @@ export default {
 
 <style>
 
-</style> -->
+</style>
 
 
 
 
 
-<template>
+<!-- <template>
   <div class="container">
     <gantt-component :tasks="tasks" class="main-container"></gantt-component>
   </div>
@@ -150,4 +150,4 @@ export default {
     position: relative;
     height: 100%;
   }
-</style>
+</style> -->

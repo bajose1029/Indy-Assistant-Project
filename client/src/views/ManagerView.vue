@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #main-div {
   display: grid;
   grid-template-rows: 0.8fr 50fr;

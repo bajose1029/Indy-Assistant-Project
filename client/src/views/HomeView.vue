@@ -66,10 +66,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #main-div {
+  height: 100%;
   display: grid;
-  grid-template-rows: 0.8fr 50fr;
+  grid-template-rows: 75px 1fr;
   grid-template-areas: 
   "icons"
   "info";
@@ -77,6 +78,8 @@ export default {
 
 #main-icon {
   grid-area: icons;
+  margin: 0 0 0 0;
+  padding: 0 0 5px 0;
 }
 
 #main-section {

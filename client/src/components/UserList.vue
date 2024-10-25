@@ -55,7 +55,7 @@ export default {
 }
 
 #list-of-artist-manager > ul {
-    padding: 10px;
+    padding: 0;
 }
 
 #list-of-artist-manager ul li {

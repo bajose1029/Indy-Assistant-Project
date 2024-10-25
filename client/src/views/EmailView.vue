@@ -74,6 +74,9 @@ h1 {
   font-size: 2em;
   margin-top: 0px;
 }
+label{
+  color: #2e2e2e;
+}
 #email-page {
   position: relative;
   height: 100vh;

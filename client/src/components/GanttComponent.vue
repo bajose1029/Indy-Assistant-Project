@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div></div>
 </template>
 
@@ -10,14 +10,14 @@ export default {
 
 <style>
 
-</style> -->
+</style>
 
 
 
 
 
 
-
+<!-- 
 <template>
     <div ref="ganttContainer"></div>
   </template>
@@ -51,4 +51,4 @@ export default {
 
 <style>
     @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
-</style>
+</style> -->

@@ -11,9 +11,13 @@
        <li> Artist Id: {{ artistProfile.artistId }} </li>
        <li> PRO: {{ artistProfile.pro }}</li>
        <li class="hyperlink" @click="goToManager(artistsManager.managerId)"> Manager: {{ artistsManager.name }}</li>
+       <section id="artist-edit-button">
+        <button>edit</button>
+       </section>
      </ul>
-   
+     
     </section>
+    
    </template>
 
 <script>
@@ -76,7 +80,11 @@ export default {
     
 }
 
-
+#artist-edit-button{
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+}
 #artist-profile > img {
     width: 86%;
     margin: 10px 10px 10px;

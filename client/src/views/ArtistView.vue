@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #main-div {
   display: grid;
   grid-template-rows: 0.8fr 50fr;
@@ -113,7 +113,7 @@ export default {
   grid-template-areas:
   "select   list   profile";
   gap: 5px;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 #choose-project {

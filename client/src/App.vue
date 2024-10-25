@@ -58,23 +58,19 @@
 </script>
 
 
-<style>
-
-body {
-  background-color: #2e2e2e;
-}
+<style >
 
 #artist-app {
     margin: 0;
-    padding: 37px 0 0 0 ;
+    padding: 0 0 0 0 ;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-style: normal;
     color: #fedcc7;
     background-color: #2e2e2e;
-    height: 95vh;
+    height: 100%;
     display: grid;
-    grid-template-rows: 1fr 40fr 1fr;
+    grid-template-rows: 55px 1fr 30px;
     grid-template-areas:
     "header"
     "main"
@@ -82,18 +78,16 @@ body {
 }
 
 header {
+
     grid-area: header;
     display : flex;
-    align-self: center;
+    align-items: center;
 
-    position: fixed;
-    top: 0;
-    left: 0;
+    /* position: fixed; */
     background-color: #2e2e2e;
     width:100%;
-    height: 55px;
-    z-index: 1000;
-    padding: 5px 0 5px 0;
+    /* z-index: 1000; */
+    padding: 5px 0 0 0;
 }
 
 
@@ -149,6 +143,7 @@ section a:nth-last-child(1){
 main {
     background-color: #2e2e2e;
     grid-area: main;
+    /* overflow-y: auto; */
     /* display : grid;
     grid-template-columns: 3fr 9fr 9fr;
     grid-template-areas:
@@ -163,13 +158,10 @@ footer {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  /* position: fixed; */
   width: 100%;
   background-color: #2e2e2e;
-  height: 40px;
-  z-index: 1000;
+  /* z-index: 1000; */
   padding: 5px 0 5px 5px;
 }
 
