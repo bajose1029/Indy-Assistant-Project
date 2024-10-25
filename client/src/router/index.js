@@ -6,12 +6,15 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import RegisterView from '../views/RegisterView.vue'
-import CalenderView from '../views/CalenderView.vue'
+import CalendarView from '../views/CalendarView.vue'
 import EmailView from '../views/EmailView.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ArtistView from '../views/ArtistView.vue'
 import AboutView from '../views/AboutView.vue'
 import ProjectView from '../views/ProjectView.vue'
+import AddProjectView from '../views/AddProjectView.vue'
+import GanttView from '../views/GanttView.vue'
+
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -56,9 +59,27 @@ const routes = [
     },
 
     {
+      path: '/gantt',
+      name: 'gantt',
+      component: GanttView,
+      meta: {
+        requiresAuth: true,
+      }
+    },
+
+    {
       path: '/project',
       name: 'project',
       component: ProjectView,
+      meta: {
+        requiresAuth: true,
+      }
+    },
+
+    {
+      path: '/project/add',
+      name: 'addProject',
+      component: AddProjectView,
       meta: {
         requiresAuth: true,
       }
@@ -89,12 +110,12 @@ const routes = [
       }
     },
     {
-      path: "/calender",
-      name: "calender",
-      component: CalenderView,
-      // meta: {
-      //   requiresAuth: true
-      // }
+      path: "/calendar",
+      name: "calendar",
+      component: CalendarView,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/email",

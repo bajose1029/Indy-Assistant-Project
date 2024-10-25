@@ -193,23 +193,20 @@ export default {
                 this.artist.userId = response.data.id
                 console.log(this.artist)
                 authService.registerArtist(this.artist).then((response) => {
-                  if (response.status == 201){
                     this.success("Artist Profile Successfully Created! Thank you for registering, please sign in.")
                     this.$router.push({
                     path: "/login",
                   });
-                  }
                 })
               }
               else{
                 this.manager.userId = response.data.id;
                 authService.registerManager(this.manager).then((response) => {
-                  if (response.status == 201){
                     this.success("Manager Profile Successfully Created! Thank you for registering, please sign in.")
                     this.$router.push({
                     path: "/login",
                     });
-                  }
+                  
                 })
               }
             }
@@ -242,6 +239,7 @@ export default {
 <style scoped>
 h1 {
   color: #2e2e2e;
+  margin-top: 0px;
 }
 
 p {

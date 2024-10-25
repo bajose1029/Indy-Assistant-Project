@@ -1,6 +1,11 @@
 <template>
   <div id="selectedProject">
     <div class="container" id="container">
+        <div id="gantt-button">
+            <router-link v-bind:to="{ name: 'gantt' }">
+                <font-awesome-icon icon="fa-solid fa-chart-gantt" id="gaant-icon"/>
+            </router-link>
+        </div>
         <form v-on:submit.prevent="sendProject">
             <h1>{{ project.projectName }}</h1>
             <div id="fields">
@@ -19,7 +24,7 @@
                     <label for="releaseDate">Release Date</label>
                         <br>
                         <input
-                            type="text"
+                            type="date"
                             id="releaseDate"
                             placeholder="Release Date"
                             v-model="project.releaseDate"
@@ -43,14 +48,15 @@
                             v-model="project.completed"
                         />
                 </div>
-                <div></div>
                 <div id="button">
-                    <button type="submit">Update</button>
-                    <button id="delete" @click="deleteProject">Delete</button>
+                    <button type="submit">Submit</button>
                 </div>
             </div>
             
         </form>
+        <div id="delete-container">
+            <button id="delete" @click="deleteProject">Delete</button>
+        </div>
     </div>
 
   </div>
@@ -72,14 +78,10 @@ export default {
 
             })
 
-            // this.$store.commit('SET_CHOSEN_PROJECT', theeProject);
-
-            // this.project.projectName = this.$store.state.chosenProject.projectName;
-            // this.project.releaseDate = this.$store.state.chosenProject.releaseDate;
-            // this.project.description = this.$store.state.chosenProject.description;
-            // this.project.completed = this.$store.state.chosenProject.completed;
             this.project = theeProject;
-            console.log(this.project)
+            this.$store.commit('SET_CHOSEN_PROJECT', theeProject);
+
+            console.log(theeProject);
     },
     methods : {
         error(msg) {
@@ -113,9 +115,10 @@ export default {
 h1 {
   color: #2e2e2e;
   font-size: 2em;
+  margin-top: 0px;
 }
 #selectedProject {
-    position: relative;
+  position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
@@ -137,10 +140,22 @@ h1 {
   display: grid;
 }
 #button{
-    display: flex;
+    margin-top: 10px;
 }
-#delete{
-    justify-self: end;
+#delete-container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+}
+#gantt-button{
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+    font-size: 400px;
+}
+#gaant-icon{
+    font-size: 27px;
+    
 }
 label {
   color: #2e2e2e;

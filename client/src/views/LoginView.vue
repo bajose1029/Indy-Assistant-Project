@@ -91,6 +91,7 @@ export default {
 <style scoped>
 h1 {
   color: #2e2e2e;
+  margin-top: 0px;
 }
 
 p {

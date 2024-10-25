@@ -42,7 +42,6 @@ export default {
         selected(userId) {
             this.choose = userId
             this.$store.commit('SET_CURRENT_USER_ID', userId);
-
         }
     }
 

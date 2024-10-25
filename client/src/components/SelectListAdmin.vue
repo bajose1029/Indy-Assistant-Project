@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            chosen: "all"
+            chosen: this.$store.state.chosen
         }
     },
     methods: {

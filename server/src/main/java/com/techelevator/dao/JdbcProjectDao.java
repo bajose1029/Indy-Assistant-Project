@@ -145,12 +145,12 @@ public class JdbcProjectDao implements ProjectDao{
     public List<Project> getProjectsByManager(int managerId)
     {
         List<Project> projects;
-        String sql = "SELECT project.project_id, project.project_name, project.release_date, project.description, " +
-                "project.completed " +
-                "FROM project " +
-                "JOIN artist_project ON artist_project.project_id = project.project_id " +
-                "JOIN artist ON artist.artist_id = artist_project.artist_id " +
-                "WHERE manager_id = ? " +
+        String sql = "SELECT p.project_id, p.project_name, p.release_date, p.description, " +
+                "p.completed " +
+                "FROM project p " +
+                "JOIN artist_project ap ON ap.project_id = p.project_id " +
+                "JOIN artist a ON a.artist_id = ap.artist_id " +
+                "WHERE a.manager_id = ? " +
                 "ORDER BY artist_name, release_date DESC;";
 
         try{
@@ -174,6 +174,7 @@ public class JdbcProjectDao implements ProjectDao{
 
             if(projectId > 0)
             {
+                project.setProjectId(projectId);
                 String associativeSql = "INSERT INTO artist_project(artist_id, project_id) " +
                         "VALUES (?, ?)";
 

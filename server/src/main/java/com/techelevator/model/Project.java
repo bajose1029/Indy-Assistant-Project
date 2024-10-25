@@ -18,9 +18,16 @@ public class Project {
         this.completed = completed;
     }
 
-    public Project() {
+    public Project(int projectId, String projectName, LocalDate releaseDate, String description) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+        this.releaseDate = releaseDate;
+        this.description = description;
     }
 
+    public Project() {
+
+    }
     public int getProjectId() {
         return projectId;
     }

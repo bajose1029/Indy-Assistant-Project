@@ -4,7 +4,7 @@
       <ul id="list-of-icons">
         
         <li><img src="../assets/user-icon.png" alt="artist icon" class="icon" v-bind:class="{ selectedIcon : iconChosen === 'artist' }" @click="chosenIcon('artist')"></li>
-        <li><img src="../assets/calendar.png" alt="calender icon" class="icon" v-bind:class="{ selectedIcon : iconChosen === 'calender' }" @click="chosenIcon('calender')"></li>
+        <li><img src="../assets/calendar.png" alt="calendar icon" class="icon" v-bind:class="{ selectedIcon : iconChosen === 'calendar' }" @click="chosenIcon('calendar')"></li>
         <li><img src="../assets/email.png" alt="email icon" class="icon" v-bind:class="{ selectedIcon : iconChosen === 'email' }" @click="chosenIcon('email')"></li>
       </ul>
       <form>
@@ -39,8 +39,8 @@ export default {
           this.$router.push({name: 'artist'});
         }
       }
-      else if(this.iconChosen === "calender") {
-        this.$router.push({name: 'calender'});
+      else if(this.iconChosen === "calendar") {
+        this.$router.push({name: 'calendar'});
       }
       else {
         this.$router.push({name: 'email'});

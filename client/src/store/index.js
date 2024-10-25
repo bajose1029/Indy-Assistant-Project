@@ -21,6 +21,7 @@ export function createStore(currentToken, currentUser) {
       artistProjects: [],
       chosenProject: {},
       currentUserId: 0,
+      calendarProjects: [],
       // currentArtistId:
       chosen : "all",
       projectChosen: "all",
@@ -30,6 +31,9 @@ export function createStore(currentToken, currentUser) {
       user: currentUser || {},
     },
     mutations: {
+      SET_CALENDAR_PROJECTS(state, projects){
+        state.calendarProjects = projects;
+      },
       SET_CHOSEN_PROJECT(state, project) {
         state.chosenProject = project;
       },

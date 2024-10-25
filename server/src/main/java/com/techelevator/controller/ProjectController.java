@@ -77,6 +77,10 @@ public class ProjectController {
         return projectDao.getAllArtistsProjects(artistId);
     }
 
+    @GetMapping("/manager/{managerId}")
+    public List<Project> getManagersProjects(@PathVariable int managerId){
+        return projectDao.getProjectsByManager(managerId);
+    }
     @PostMapping
     public Project addArtistsProject(@RequestBody Project project, Principal principal){
         User user = userDao.getUserByUsername(principal.getName());

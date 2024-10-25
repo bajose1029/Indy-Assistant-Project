@@ -234,6 +234,10 @@ const resourceService = {
     return axios.get('/users');
   },
 
+  getProjectsFromManager(managerId) {
+    return axios.get(`/projects/manager/${managerId}`);
+  },
+
   getAnArtistsProjects(artistId) {
 
     return axios.get(`/projects/artists/${artistId}`);

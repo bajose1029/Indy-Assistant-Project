@@ -144,7 +144,7 @@ public class JdbcManagerDao implements ManagerDao {
         int managerId;
 
         String sql = "INSERT INTO manager(manager_name, manager_email_address, user_id, image_url) " +
-                "VALUES(? ? ? ?) RETURNING manager_id;";
+                "VALUES(?, ?, ?, ?) RETURNING manager_id;";
 
         try {
             managerId = template.queryForObject(sql, int.class, manager.getName(), manager.getEmailAddress(),
